@@ -3,29 +3,33 @@ const app = express()
 
 let students = [
     {
-      "name": "Alin"
+        "id": 1,
+        "name": "Alin"
     },
     {
-      "name": "Kevin Albert"
+        "id": 2,
+        "name": "Kevin Albert"
     },
     {
-      "name": "Marco"
+        "id": 3,
+        "name": "Marco"
     }
-  ]
+]
 
-  app.get("/", (req, res) => {
+app.get("/", (req, res) => {
     res.json(students)
-  })
+})
 
-  app.post("/", (req, res) => {
+app.post("/", (req, res) => {
     const student = {
-        ...req.body
-      }
-    
-      students = [...students, student]
-    
-      res.json(student)
-    
-    })
+        ...req.body,
+        id: students.length + 1
+    }
+
+    students = [...students, student]
+
+    res.json(student)
+
+})
 
 module.exports = app
